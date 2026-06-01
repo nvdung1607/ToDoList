@@ -69,4 +69,9 @@ interface TaskRepository {
      * Retrieves all tasks in the database.
      */
     suspend fun getAllTasks(): List<Task>
+
+    /**
+     * Observes all tasks in the database (reactive).
+     */
+    fun observeAllTasks(): Flow<List<Task>>
 }

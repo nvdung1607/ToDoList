@@ -71,4 +71,10 @@ class TaskRepositoryImpl @Inject constructor(
     override suspend fun getAllTasks(): List<Task> {
         return taskDao.getAllTasks().map { it.toDomain() }
     }
+
+    override fun observeAllTasks(): Flow<List<Task>> {
+        return taskDao.observeAllTasks().map { entities ->
+            entities.map { it.toDomain() }
+        }
+    }
 }

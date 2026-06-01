@@ -203,4 +203,10 @@ interface TaskDao {
      */
     @Query("SELECT * FROM tasks")
     suspend fun getAllTasks(): List<TaskEntity>
+
+    /**
+     * Quan sát tất cả task (reactive).
+     */
+    @Query("SELECT * FROM tasks")
+    fun observeAllTasks(): Flow<List<TaskEntity>>
 }
