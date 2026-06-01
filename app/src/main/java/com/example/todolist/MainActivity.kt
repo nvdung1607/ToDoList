@@ -4,54 +4,48 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.todolist.data.preferences.UserPreferencesDataStore
 import com.example.todolist.domain.model.ThemeMode
+import com.example.todolist.presentation.navigation.AppNavHost
+import com.example.todolist.presentation.navigation.BottomNavBar
 import com.example.todolist.presentation.theme.ToDoListTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var userPreferencesDataStore: UserPreferencesDataStore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // ThemeMode will be driven by UserPreferences / ViewModel later
-            ToDoListTheme(themeMode = ThemeMode.SYSTEM) {
-                Surface(
+            val userPrefs by userPreferencesDataStore.userPreferences.collectAsState(initial = null)
+            val themeMode = userPrefs?.themeMode ?: ThemeMode.SYSTEM
+
+            ToDoListTheme(themeMode = themeMode) {
+                val navController = rememberNavController()
+                Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    // Navigation host will replace this placeholder
-                    Box(contentAlignment = Alignment.Center) {
-                        Text(
-                            text = "ToDoList",
-                            style = MaterialTheme.typography.headlineLarge,
-                            color = MaterialTheme.colorScheme.onBackground,
-                        )
+                    bottomBar = {
+                        BottomNavBar(navController = navController)
                     }
+                ) { innerPadding ->
+                    AppNavHost(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun DefaultPreview() {
-    ToDoListTheme(themeMode = ThemeMode.LIGHT) {
-        Surface(color = MaterialTheme.colorScheme.background) {
-            Text(
-                text = "ToDoList Preview",
-                style = MaterialTheme.typography.headlineMedium,
-            )
         }
     }
 }
