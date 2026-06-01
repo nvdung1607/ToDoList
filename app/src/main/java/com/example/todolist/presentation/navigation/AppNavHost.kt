@@ -16,6 +16,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 
+import com.example.todolist.presentation.home.HomeScreen
+
 @Composable
 fun AppNavHost(
     navController: NavHostController,
@@ -75,12 +77,6 @@ fun AppNavHost(
 }
 
 // Placeholder Screens to avoid compile issues
-@Composable
-fun HomeScreen(navController: NavHostController) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Home Screen", style = MaterialTheme.typography.titleLarge)
-    }
-}
 
 @Composable
 fun DashboardScreen(navController: NavHostController) {
