@@ -7,7 +7,20 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.13.0"
 kotlin = "2.2.10"
-composeBom = "2026.02.01"
+composeBom = "2024.12.01"
+room = "2.7.0"
+hilt = "2.59.2"
+hiltNavigationCompose = "1.2.0"
+hiltWork = "1.2.0"
+ksp = "2.2.10-2.0.2"
+datastore = "1.1.1"
+work = "2.9.1"
+coroutines = "1.8.1"
+vico = "1.15.0"
+firebaseBom = "33.1.1"
+credentials = "1.3.0"
+coil = "2.6.0"
+navigationCompose = "2.8.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,7 +38,50 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+# Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltWork" }
+
+# DataStore
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+# WorkManager
+androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+
+# Coroutines
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Vico Charts
+vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.ref = "vico" }
+
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+
+# Credentials Manager
+androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
+androidx-credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
+
+# Coil
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# Compose Navigation
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
 
